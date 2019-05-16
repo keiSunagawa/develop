@@ -1,0 +1,37 @@
+- name: create work dir
+  file: path=/usr/local/src/nix_work state=directory owner=kerfume group=kerfume mode=0755
+
+- name: create nix dir
+  file: path=/nix state=directory owner=root group=root mode=0777
+
+- name: delete install shell
+  file:
+    path: /usr/local/src/nix_work/install
+    state: absent
+
+- name: delete config file
+  file:
+    path: /etc/nix/nix.conf
+    state: absent
+
+- name: create config file
+  file:
+    path: /etc/nix/nix.conf
+    state: touch
+
+# se https://github.com/NixOS/nix/issues/2651
+- name: add sandbox config
+  lineinfile:
+    dest: /etc/nix/nix.conf
+    line: "sandbox = false"
+
+- name: get install shell
+  get_url:
+    url: https://nixos.org/nix/install
+    dest: /usr/local/src/nix_work/install
+    mode: 0777
+    owner: kerfume
+    group: kerfume
+
+- name: install nix
+  command: "sudo -u kerfume sh /usr/local/src/nix_work/install"

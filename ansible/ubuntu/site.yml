@@ -1,0 +1,6 @@
+- hosts: development
+  remote_user: kerfume
+  become: yes
+  roles:
+    - role: nix
+      tags: nix
