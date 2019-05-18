@@ -1,2 +1,7 @@
-- name: what is this?
-  command: "pwd"
+- name: nix gc
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/nix-store --gc"
+
+- name: install git from nix
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/nix-env -i git-2.21.0"
