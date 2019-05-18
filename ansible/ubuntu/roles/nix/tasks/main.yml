@@ -1,5 +1,10 @@
 - name: create work dir
-  file: path=/usr/local/src/nix_work state=directory owner=kerfume group=kerfume mode=0755
+  file:
+    path: /usr/local/src/nix_work
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
 
 - name: create nix dir
   file: path=/nix state=directory owner=root group=root mode=0777
@@ -13,6 +18,14 @@
   file:
     path: /etc/nix/nix.conf
     state: absent
+
+- name: create config dir
+  file:
+    path: /etc/nix/
+    state: directory
+    owner: root
+    group: root
+    mode: 0777
 
 - name: create config file
   file:
@@ -30,8 +43,10 @@
     url: https://nixos.org/nix/install
     dest: /usr/local/src/nix_work/install
     mode: 0777
-    owner: kerfume
-    group: kerfume
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - name: install nix
-  command: "sudo -u kerfume sh /usr/local/src/nix_work/install"
+  become: yes
+  become_user: "{{ user }}"
+  shell: /usr/local/src/nix_work/install

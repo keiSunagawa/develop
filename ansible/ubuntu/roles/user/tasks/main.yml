@@ -1,0 +1,9 @@
+- name: create group
+  group:
+    name: "{{ user }}"
+
+- name: create user
+  user:
+    name: "{{ user }}"
+    groups:  "{{ user }}"
+    shell: /bin/bash

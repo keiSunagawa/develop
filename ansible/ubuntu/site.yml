@@ -1,6 +1,17 @@
 - hosts: development
-  remote_user: kerfume
+  remote_user: "{{ user }}"
   become: yes
+  vars_files:
+   - var.yml
   roles:
     - role: nix
       tags: nix
+    - role: git
+      tags: git
+- hosts: development
+  become: yes
+  vars_files:
+   - var.yml
+  roles:
+    - role: user
+      tags: user
