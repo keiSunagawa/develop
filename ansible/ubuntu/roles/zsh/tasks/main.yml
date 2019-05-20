@@ -1,0 +1,11 @@
+- name: nix gc
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/nix-store --gc"
+
+- name: install from nix
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/nix-env -i zsh-5.7.1"
+
+- name: set default shell
+  become: true
+  command: "chsh -s /home/{{ user }}/.nix-profile/bin/zsh {{ user }}"

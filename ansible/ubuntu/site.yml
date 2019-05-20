@@ -5,9 +5,22 @@
    - var.yml
   roles:
     - role: nix
-      tags: nix
+      tags: ["nix", "dev"]
     - role: git
-      tags: git
+      tags: ["git", "dev"]
+    - role: docker
+      tags: ["docker", "dev"]
+    - role: tmux
+      tags: ["tmux", "dev"]
+    - role: fish
+      tags: ["fish", "dev"]
+    - role: emacs
+      tags: ["emacs", "dev"]
+    - role: configs
+      tags: ["configs"]
+    - role: zsh
+      tags: zsh
+
 - hosts: development
   become: yes
   vars_files:
