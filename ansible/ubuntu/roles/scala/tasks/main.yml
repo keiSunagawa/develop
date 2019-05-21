@@ -1,0 +1,62 @@
+- name: nix gc
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/nix-store --gc"
+
+
+- name: install java from nix
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/nix-env -i openjdk-11.0.3-ga"
+
+- name: install scala from nix
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/nix-env -i scala-2.12.8"
+
+- name: install sbt from nix
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/nix-env -i sbt-1.2.8"
+
+- name: make work dir
+  file:
+    path: "/usr/local/src/scala_work"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+
+- name: make install dir
+  file:
+    path: "home/{{ user }}/scala/bin"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+
+- name: delete coursier shell
+  file:
+    path: "/usr/local/src/scala_work/coursier"
+    state: absent
+
+- name: get coursier
+  get_url:
+    url: https://git.io/coursier
+    dest: "/usr/local/src/scala_work/coursier"
+    mode: 0777
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: get metals
+  become_user: "{{ user }}"
+  become: true
+  shell: |
+    ./coursier bootstrap \
+     --java-opt -Xss4m \
+     --java-opt -Xms100m \
+     --java-opt -Dmetals.client=emacs \
+     org.scalameta:metals_2.12:0.5.2 \
+     -r bintray:scalacenter/releases \
+     -r sonatype:snapshots \
+     -o /home/{{ user }}/scala/bin/metals-emacs -f
+  args:
+    chdir: "/usr/local/src/scala_work"
+  environment:
+    PATH: "/home/{{ user }}/.nix-profile/bin:{{ ansible_env.PATH }}"

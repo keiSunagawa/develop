@@ -16,6 +16,8 @@
       tags: ["fish", "dev"]
     - role: emacs
       tags: ["emacs", "dev"]
+    - role: scala
+      tags: ["scala", "dev"]
     - role: configs
       tags: ["configs"]
     - role: zsh
