@@ -5,7 +5,7 @@
 
 - name: install java from nix
   become_user: "{{ user }}"
-  command: "~/.nix-profile/bin/nix-env -i openjdk-11.0.3-ga"
+  command: "~/.nix-profile/bin/nix-env -i openjdk-8u212-ga"
 
 - name: install scala from nix
   become_user: "{{ user }}"
@@ -25,7 +25,7 @@
 
 - name: make install dir
   file:
-    path: "home/{{ user }}/scala/bin"
+    path: "/home/{{ user }}/scala/bin"
     state: directory
     owner: "{{ user }}"
     group: "{{ user }}"

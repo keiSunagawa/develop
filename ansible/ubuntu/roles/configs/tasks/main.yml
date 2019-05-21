@@ -27,9 +27,9 @@
     mode: 0755
 
 - name: deploy config.fish
-  copy:
-    src: "config.fish"
-    dest: "/home/{{ user }}/.config/fish"
+  template:
+    src: "config.fish.j2"
+    dest: "/home/{{ user }}/.config/fish/config.fish"
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0655
@@ -43,21 +43,21 @@
     mode: 0655
 
 # from kemacs
-- name: delete kemacs repo
-  file:
-    path: "/home/{{ user }}/gits/kemacs"
-    state: absent
+# - name: delete kemacs repo
+#   file:
+#     path: "/home/{{ user }}/gits/kemacs"
+#     state: absent
 
-- name: clone kemacs repo
-  become_user: "{{ user }}"
-  shell: "git clone https://github.com/keiSunagawa/kemacs.git /home/{{ user }}/gits/kemacs"
-  environment:
-      PATH: "/home/{{ user }}/.nix-profile/bin/:{{ ansible_env.PATH }}"
+# - name: clone kemacs repo
+#   become_user: "{{ user }}"
+#   shell: "git clone https://github.com/keiSunagawa/kemacs.git /home/{{ user }}/gits/kemacs"
+#   environment:
+#       PATH: "/home/{{ user }}/.nix-profile/bin/:{{ ansible_env.PATH }}"
 
-- name: deploy .emacs.d
-  become_user: "{{ user }}"
-  file:
-    src: "/home/{{ user }}/gits/kemacs/.emacs.d"
-    dest: "/home/{{ user }}/.emacs.d"
-    state: link
-    force: true
+# - name: deploy .emacs.d
+#   become_user: "{{ user }}"
+#   file:
+#     src: "/home/{{ user }}/gits/kemacs/.emacs.d"
+#     dest: "/home/{{ user }}/.emacs.d"
+#     state: link
+#     force: true
