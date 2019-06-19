@@ -22,14 +22,14 @@ class ImpureProd:
         sshcom = "ssh -p "+port+" "+host+" "+command
         subprocess.call([sshcom], shell=True)
 
-def run(command):
-    mod = ImpureProd()
-    ts = mod.readTargets()
-    map(lambda a: mod.do_ssh(a, command), ts)
+def run(impl, command):
+    ts = impl.readTargets()
+    map(lambda a: impl.do_ssh(a, command), ts)
 
 if __name__ == "__main__":
     ags = sys.argv
     if len(ags) == 2:
-        run(ags[1])
+        impl = ImpureProd()
+        run(impl, ags[1])
     else:
         print "needs one args"
