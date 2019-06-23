@@ -18,6 +18,8 @@
       tags: ["emacs", "dev"]
     - role: scala
       tags: ["scala", "dev"]
+    - role: elixir
+      tags: ["elixir", "dev"]
     - role: configs
       tags: ["configs"]
     - role: zsh
