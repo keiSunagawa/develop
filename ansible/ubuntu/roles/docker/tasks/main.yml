@@ -4,4 +4,4 @@
 
 - name: install from nix
   become_user: "{{ user }}"
-  command: "~/.nix-profile/bin/nix-env -i docker-18.09.5"
+  command: "~/.nix-profile/bin/nix-env -i docker-18.09.6"

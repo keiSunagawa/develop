@@ -5,7 +5,7 @@
    - var.yml
   roles:
     - role: nix
-      tags: ["nix", "dev"]
+      tags: ["nix"]
     - role: git
       tags: ["git", "dev"]
     - role: docker

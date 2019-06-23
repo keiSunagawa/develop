@@ -4,8 +4,4 @@
 
 - name: install from nix
   become_user: "{{ user }}"
-  command: "~/.nix-profile/bin/nix-env -i elixir-1.8.1"
-
-- name: set default shell
-  become: true
-  command: "chsh -s /home/{{ user }}/.nix-profile/bin/zsh {{ user }}"
+  command: "~/.nix-profile/bin/nix-env -i elixir-1.8.2"

@@ -7,17 +7,6 @@
     mode: 0755
 
 # from develop
-- name: delete develop repo
-  file:
-    path: "/home/{{ user }}/gits/develop"
-    state: absent
-
-- name: clone develop repo
-  become_user: "{{ user }}"
-  shell: "git clone https://github.com/keiSunagawa/develop.git /home/{{ user }}/gits/develop"
-  environment:
-      PATH: "/home/{{ user }}/.nix-profile/bin/:{{ ansible_env.PATH }}"
-
 - name: create fish config dir
   file:
     path: "/home/{{ user }}/.config/fish"

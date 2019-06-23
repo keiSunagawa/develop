@@ -4,4 +4,4 @@
 
 - name: install from nix
   become_user: "{{ user }}"
-  command: "~/.nix-profile/bin/nix-env -i git-2.21.0"
+  command: "~/.nix-profile/bin/nix-env -i git-2.22.0"

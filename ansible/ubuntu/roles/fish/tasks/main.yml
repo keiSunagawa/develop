@@ -8,4 +8,4 @@
 
 - name: set default shell
   become: true
-  command: "chsh -s /home/{{ user }}/.nix-profile/bin/zsh {{ user }}"
+  command: "chsh -s /home/{{ user }}/.nix-profile/bin/fish {{ user }}"
