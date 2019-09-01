@@ -4,4 +4,4 @@
 
 - name: install from nix
   become_user: "{{ user }}"
-  command: "~/.nix-profile/bin/nix-env -i emacs-26.2"
+  command: "~/.nix-profile/bin/nix-env -i ansible-2.8.4"

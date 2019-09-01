@@ -1,17 +1,22 @@
 - name: create work dir
   file:
-    path: /usr/local/src/nix_work
+    path: "{{ homedir }}/nix_work"
     state: directory
     owner: "{{ user }}"
-    group: "{{ user }}"
+    group: "{{ group }}"
     mode: 0755
 
 - name: create nix dir
-  file: path=/nix state=directory owner=root group=root mode=0777
+  file:
+    path: /nix
+    state: directory
+    owner: root
+    group: "{{ rootGroup }}"
+    mode: 0777
 
 - name: delete install shell
   file:
-    path: /usr/local/src/nix_work/install
+    path: "{{ homedir }}/nix_work/install"
     state: absent
 
 - name: delete config file
@@ -24,7 +29,7 @@
     path: /etc/nix/
     state: directory
     owner: root
-    group: root
+    group: "{{ rootGroup }}"
     mode: 0777
 
 - name: create config file
@@ -41,12 +46,12 @@
 - name: get install shell
   get_url:
     url: https://nixos.org/nix/install
-    dest: /usr/local/src/nix_work/install
+    dest: "{{ homedir }}/nix_work/install"
     mode: 0777
     owner: "{{ user }}"
-    group: "{{ user }}"
+    group: "{{ group }}"
 
 - name: install nix
   become: yes
   become_user: "{{ user }}"
-  shell: /usr/local/src/nix_work/install
+  shell: "{{ homedir }}/nix_work/install"
