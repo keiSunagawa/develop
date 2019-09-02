@@ -1,0 +1,35 @@
+- name: create work dir
+  become_user: "{{ user }}"
+  file:
+    path: "~/work/ansible_app_install"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0755
+
+- name: copy install script
+  become_user: "{{ user }}"
+  copy:
+    src: "install.sh"
+    dest: "~/work/ansible_app_install"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0755
+
+- name: install from nix
+  become_user: "{{ user }}"
+  shell: "~/work/ansible_app_install/install.sh {{ item }}"
+  with_items:
+    - "ansible"
+    - "sshpass"
+    - "tmux"
+    - "docker"
+    - "emacs"
+    - "elixir"
+    - "fish"
+    - "nodejs"
+    - "reattach-to-user-namespace"
+
+- name: nix gc
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/nix-store --gc"

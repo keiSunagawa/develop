@@ -1,0 +1,28 @@
+- name: install from nix
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/nix-env -i fish"
+
+- name: nix gc
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/nix-store --gc"
+
+- name: bind home dir
+  become_user: "{{ user }}"
+  shell: "echo $HOME"
+  register: userHome
+
+- name: bind home
+  debug:
+    var: userHome.stdout_lines[0]
+
+- name: add shell
+  become: yes
+  lineinfile:
+    dest: "/etc/shells"
+    state: present
+    regexp: '.*/.nix-profile/bin/fish'
+    line: '{{ userHome.stdout_lines[0] }}/.nix-profile/bin/fish'
+
+- name: set default shell
+  become: yes
+  shell: "chsh -s {{ userHome.stdout_lines[0] }}/.nix-profile/bin/fish {{ user }}"

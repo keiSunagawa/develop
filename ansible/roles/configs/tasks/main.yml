@@ -1,0 +1,56 @@
+- name: create repos dir
+  become_user: "{{ user }}"
+  file:
+    path: "~/gits"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0755
+
+# from develop
+- name: create fish config dir
+  become_user: "{{ user }}"
+  file:
+    path: "~/.config/fish"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0755
+
+- name: deploy config.fish
+  become_user: "{{ user }}"
+  template:
+    src: "config.fish.j2"
+    dest: "~/.config/fish/config.fish"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0655
+
+- name: deploy .tmux.conf
+  become_user: "{{ user }}"
+  copy:
+    src: ".tmux.conf"
+    dest: "~/"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0655
+
+# from kemacs
+# - name: delete kemacs repo
+#   file:
+#     path: "{{ homedir }}/gits/kemacs"
+#     state: absent
+
+# - name: clone kemacs repo
+#   become_user: "{{ user }}"
+#   shell: "git clone https://github.com/keiSunagawa/kemacs.git ~/gits/kemacs"
+#   environment:
+#       PATH: "{{ homedir }}/.nix-profile/bin/:{{ ansible_env.PATH }}"
+
+# - name: deploy .emacs.d
+#   become_user: "{{ user }}"
+#   file:
+#     src: "{{ homedir }}/gits/kemacs/.emacs.d"
+#     dest: "{{ homedir }}/.emacs.d"
+#     state: link
+#     force: true

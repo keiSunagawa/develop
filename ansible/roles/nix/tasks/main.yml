@@ -1,0 +1,57 @@
+- name: create work dir
+  file:
+    path: "~/nix_work"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0755
+
+- name: create nix dir
+  file:
+    path: /nix
+    state: directory
+    owner: root
+    group: "{{ rootGroup }}"
+    mode: 0777
+
+- name: delete install shell
+  file:
+    path: "~/nix_work/install"
+    state: absent
+
+- name: delete config file
+  file:
+    path: /etc/nix/nix.conf
+    state: absent
+
+- name: create config dir
+  file:
+    path: /etc/nix/
+    state: directory
+    owner: root
+    group: "{{ rootGroup }}"
+    mode: 0777
+
+- name: create config file
+  file:
+    path: /etc/nix/nix.conf
+    state: touch
+
+# se https://github.com/NixOS/nix/issues/2651
+- name: add sandbox config
+  lineinfile:
+    dest: /etc/nix/nix.conf
+    line: "sandbox = false"
+
+- name: get install shell
+  get_url:
+    url: https://nixos.org/nix/install
+    dest: "~/nix_work/install"
+    mode: 0777
+    owner: "{{ user }}"
+    group: "{{ group }}"
+
+- name: install nix
+  become: yes
+  become_user: "{{ user }}"
+  shell: "~/nix_work/install"
