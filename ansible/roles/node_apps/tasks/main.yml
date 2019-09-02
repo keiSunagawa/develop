@@ -1,0 +1,20 @@
+- name: create npm package dir
+  become_user: "{{ user }}"
+  file:
+    path: "~/.global_node_modules"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0755
+
+- name: set npm install prefix
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/npm config set prefix ~/.global_node_modules"
+
+- name: install from node
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/npm install -g {{ item }}"
+  with_items:
+    - "purescript"
+    - "pulp"
+    - "bower"

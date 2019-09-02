@@ -1,0 +1,2 @@
+[development]
+<your host> ansible_ssh_user=kerfume

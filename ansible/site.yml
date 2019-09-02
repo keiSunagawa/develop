@@ -1,0 +1,20 @@
+- hosts: development
+  remote_user: "{{ user }}"
+  become: yes
+  vars_files:
+   - var.yml
+  roles:
+    - role: ubuntu_user
+      tags: ["ubuntu"]
+    - role: ubuntu_git
+      tags: ["ubuntu"]
+    - role: nix
+      tags: ["nix"]
+    - role: fish
+      tags: ["fish"]
+    - role: nix_apps
+      tags: ["nix_apps"]
+    - role: node_apps
+      tags: ["node_apps"]
+    - role: configs
+      tags: ["configs"]

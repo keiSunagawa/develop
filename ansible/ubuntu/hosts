@@ -1,2 +1,0 @@
-[development]
-; <ip or domain> ansible_ssh_user=<username>

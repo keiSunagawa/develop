@@ -1,7 +1,0 @@
-- name: nix gc
-  become_user: "{{ user }}"
-  command: "~/.nix-profile/bin/nix-store --gc"
-
-- name: install from nix
-  become_user: "{{ user }}"
-  command: "~/.nix-profile/bin/nix-env -i tmux-2.9a"
