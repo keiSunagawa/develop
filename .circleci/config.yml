@@ -42,7 +42,7 @@ jobs:
       - run:
           name: main
           command: |
-            source functions
+            . functions
             f 'first ci'
 
       # - save_cache:
