@@ -4,6 +4,15 @@
 #
 version: 2
 
+references:
+  commands:
+    functions: &functions
+      name: Setup AWS
+      command: |
+        f() {
+          echo $1
+        }
+
 jobs:
   build:
     docker:
@@ -27,11 +36,11 @@ jobs:
       #       - v1-dependencies-{{ checksum "requirements.txt" }}
       #       # fallback to using the latest cache if no exact match is found
       #       - v1-dependencies-
-
+      - run: *functions
       - run:
-          name: install dependencies
+          name: main
           command: |
-            echo 'first ci'
+            f 'first ci'
 
       # - save_cache:
       #     paths:
