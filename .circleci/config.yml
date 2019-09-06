@@ -11,7 +11,7 @@ references:
       command: |
         cat << EOS > functions
         f() {
-          echo $1
+          echo \$1
         }
         EOS
 
@@ -42,7 +42,7 @@ jobs:
       - run:
           name: main
           command: |
-            sources functions
+            source functions
             f 'first ci'
 
       # - save_cache:
