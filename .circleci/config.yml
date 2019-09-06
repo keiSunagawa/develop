@@ -9,9 +9,11 @@ references:
     functions: &functions
       name: Setup AWS
       command: |
+        cat << EOS > functions
         f() {
           echo $1
         }
+        EOS
 
 jobs:
   build:
@@ -40,6 +42,7 @@ jobs:
       - run:
           name: main
           command: |
+            sources functions
             f 'first ci'
 
       # - save_cache:
