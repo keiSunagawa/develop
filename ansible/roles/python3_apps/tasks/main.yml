@@ -1,0 +1,10 @@
+- name: upgrade pip3
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/pip3 install --upgrade pip --user"
+
+- name: install from pip3
+  become_user: "{{ user }}"
+  command: "~/.nix-profile/bin/pip3 install {{item}} --upgrade --user"
+  with_items:
+    - "setuptools"
+    - "awscli"

@@ -16,5 +16,7 @@
       tags: ["nix_apps"]
     - role: node_apps
       tags: ["node_apps"]
+    - role: python3_apps
+      tags: ["python3_apps"]
     - role: configs
       tags: ["configs"]
