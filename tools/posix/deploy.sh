@@ -6,6 +6,6 @@ for scriptpath in $(ls ./*.sh); do
     thisfilename=$(basename ${0})
     if [ ${scriptname} != ${thisfilename} ] ; then
         commandname=$(echo ${scriptname} | sed "s/.sh//")
-        cp ./${scriptname} /usr/local/bin/${commandname}
+        cp ./${scriptname} $HOME/.local/bin/${commandname}
     fi
 done

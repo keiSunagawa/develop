@@ -1,0 +1,6 @@
+- name: install from fisher
+  become_user: "{{ user }}"
+  shell: "fish -c 'fisher add {{ item }}'"
+  with_items:
+    - "oh-my-fish/theme-bobthefish"
+    - "jethrokuan/z"

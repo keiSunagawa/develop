@@ -20,3 +20,5 @@
       tags: ["python3_apps"]
     - role: configs
       tags: ["configs"]
+    - role: fisher
+      tags: ["fisher"]
