@@ -37,6 +37,9 @@
     - "reattach-to-user-namespace"
     - "graphviz"
     - "peco"
+    - "jq"
+    - "rustc"
+    - "cargo"
 
 - name: nix gc
   become_user: "{{ user }}"

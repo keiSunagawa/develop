@@ -44,6 +44,11 @@ function kube
   kubectl $argv
 end
 
+function cd
+  builtin cd $argv
+  ls
+end
+
 # bootstrap fisher
 if not functions -q fisher
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
