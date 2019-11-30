@@ -49,6 +49,10 @@ function cd
   ls
 end
 
+function ammrepl
+  bash ~/.nix-profile/bin/amm
+end
+
 # bootstrap fisher
 if not functions -q fisher
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config

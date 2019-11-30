@@ -35,6 +35,24 @@
     group: "{{ group }}"
     mode: 0655
 
+- name: create ammonite config dir
+  become_user: "{{ user }}"
+  file:
+    path: "~/.ammonite"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0755
+
+- name: deploy .ammonite
+  become_user: "{{ user }}"
+  copy:
+    src: ".ammonite/predef.sc"
+    dest: "~/.ammonite/predef.sc"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: 0655
+
 # from kemacs
 # - name: delete kemacs repo
 #   file:

@@ -33,6 +33,7 @@
     - "fish"
     - "scala"
     - "sbt"
+    - "ammonite"
     - "nodejs"
     - "reattach-to-user-namespace"
     - "graphviz"
@@ -40,6 +41,7 @@
     - "jq"
     - "rustc"
     - "cargo"
+    - "zulu11.2.3-jdk11.0.1"
 
 - name: nix gc
   become_user: "{{ user }}"
