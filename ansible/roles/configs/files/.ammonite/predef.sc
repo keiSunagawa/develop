@@ -7,3 +7,5 @@ import $ivy.`com.chuusai::shapeless:2.3.3`
 import $ivy.`io.circe::circe-core:0.12.3`
 import $ivy.`io.circe::circe-generic:0.12.3`
 import $ivy.`io.circe::circe-parser:0.12.3`
+
+import $ivy.`co.fs2::fs2-core:2.1.0`

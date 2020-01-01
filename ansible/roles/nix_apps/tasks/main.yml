@@ -24,7 +24,7 @@
     - "sshpass"
     - "tmux"
 #    - "docker"
-    - "helm-2.14.2"
+    - "helm"
     - "terraform"
     - "emacs"
     - "elixir"
@@ -42,6 +42,8 @@
     - "rustc"
     - "cargo"
     - "zulu11.2.3-jdk11.0.1"
+    - "doctl"
+    - "stack"
 
 - name: nix gc
   become_user: "{{ user }}"
