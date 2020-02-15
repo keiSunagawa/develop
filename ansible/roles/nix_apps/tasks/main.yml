@@ -28,6 +28,7 @@
     - "terraform"
     - "emacs"
     - "elixir"
+    - "erlang"
     - "python3-3.7.4"
     - "python3.7-pip-19.1.1"
     - "fish"
