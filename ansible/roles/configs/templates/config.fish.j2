@@ -11,6 +11,8 @@ end
 set -x SSL_CERT_FILE "$HOME/.nix-profile/etc/ssl/certs/ca-bundle.crt"
 set -x PYTHONPATH "$HOME/.local/lib/python3.7/site-packages/"
 set -x SBT_OPTS "-Xmx5G -Xss2M"
+# ref http://ama-ch.hatenablog.com/entry/20090115/1232000087
+set -x __CF_USER_TEXT_ENCODING "0x1F5:0x8000100:14"
 
 set -g theme_powerline_fonts no
 # function fish_prompt

@@ -45,6 +45,8 @@
     - "zulu11.2.3-jdk11.0.1"
     - "doctl"
     - "stack"
+    - "rlwrap"
+    - "wireshark-cli-3.2.2"
 
 - name: nix gc
   become_user: "{{ user }}"
